@@ -1,5 +1,3 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 plugins {
     `maven-publish`
     kotlin("jvm") version "1.7.10"
@@ -39,6 +37,8 @@ dependencies {
     implementation("org.pf4j:pf4j:3.6.0")
 }
 
-tasks.withType<KotlinCompile> {
-    kotlinOptions.jvmTarget = "11"
+tasks {
+    compileKotlin {
+        kotlinOptions.jvmTarget = "11"
+    }
 }
