@@ -23,6 +23,18 @@ repositories {
     }
 }
 
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            groupId = "dev.narcos.plugins"
+            artifactId = "common"
+            version = "1.0-SNAPSHOT"
+
+            from(components["java"])
+        }
+    }
+}
+
 dependencies {
     // Unethicalite
     implementation("net.unethicalite:runelite-api:1.0.1")
