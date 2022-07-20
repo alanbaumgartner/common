@@ -37,16 +37,16 @@ publishing {
 
 dependencies {
     // Unethicalite
-    implementation("net.unethicalite:runelite-api:1.0.1")
-    implementation("net.unethicalite:runelite-client:1.0.1")
+    compileOnly("net.unethicalite:runelite-api:1.0.1")
+    compileOnly("net.unethicalite:runelite-client:1.0.1")
 
     // Kotlin
-    implementation(group = "org.jetbrains.kotlin", name = "kotlin-stdlib")
+    compileOnly(group = "org.jetbrains.kotlin", name = "kotlin-stdlib")
 
     // Libs
-    implementation("com.google.inject:guice:5.0.1")
-    implementation("javax.annotation:javax.annotation-api:1.3.2")
-    implementation("org.pf4j:pf4j:3.6.0")
+    compileOnly("com.google.inject:guice:5.0.1")
+    compileOnly("javax.annotation:javax.annotation-api:1.3.2")
+    compileOnly("org.pf4j:pf4j:3.6.0")
 }
 
 tasks {
