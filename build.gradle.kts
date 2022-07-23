@@ -23,12 +23,16 @@ repositories {
     }
 }
 
+java {
+    withSourcesJar()
+}
+
 publishing {
     publications {
         create<MavenPublication>("maven") {
             groupId = "dev.narcos.plugins"
             artifactId = "common"
-            version = "1.0-SNAPSHOT"
+            version = "local"
 
             from(components["java"])
         }
@@ -37,8 +41,8 @@ publishing {
 
 dependencies {
     // Unethicalite
-    compileOnly("net.unethicalite:runelite-api:1.0.1")
-    compileOnly("net.unethicalite:runelite-client:1.0.1")
+    compileOnly("net.unethicalite:runelite-api:${Versions.unethicaliteVersion}")
+    compileOnly("net.unethicalite:runelite-client:${Versions.unethicaliteVersion}")
 
     // Kotlin
     compileOnly(group = "org.jetbrains.kotlin", name = "kotlin-stdlib")
@@ -53,4 +57,8 @@ tasks {
     compileKotlin {
         kotlinOptions.jvmTarget = "11"
     }
+}
+
+object Versions {
+    const val unethicaliteVersion = "1.0.6-SNAPSHOT"
 }
