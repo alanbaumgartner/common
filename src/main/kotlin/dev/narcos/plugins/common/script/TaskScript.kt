@@ -4,11 +4,11 @@ import net.unethicalite.client.Static
 
 abstract class TaskScript : Script() {
 
-    protected abstract val tasks: List<Task>
+    protected abstract fun getTasks(): List<Task>
 
     override fun startUp() {
         super.startUp()
-        tasks.forEach {
+        getTasks().forEach {
             it.reset()
             Static.getEventBus().register(it)
         }
@@ -16,7 +16,7 @@ abstract class TaskScript : Script() {
 
     override fun shutDown() {
         super.shutDown()
-        tasks.forEach {
+        getTasks().forEach {
             it.reset()
             Static.getEventBus().unregister(it)
         }
@@ -27,7 +27,7 @@ abstract class TaskScript : Script() {
      * case when a task isn't completed successfully.
      */
     override fun loop() {
-        tasks.forEach {
+        getTasks().forEach {
             if (it.validate()) {
                 log.debug("Current Task: ${it::class.java.simpleName}")
                 it.execute()

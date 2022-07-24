@@ -24,11 +24,25 @@ object MovementExt {
         return entities.flatten().minByOrNull { it.distanceTo(Players.getLocal().worldLocation) }
     }
 
+    fun getBankEntity(bankLocation: BankLocation): SceneEntity? {
+        val entities = listOf(
+            NPCs.getAll { it.hasAction("Bank") && bankLocation.area.contains(it) && Reachable.isInteractable(it) },
+            TileObjects.getAll { it.hasAction("Bank") && bankLocation.area.contains(it) && Reachable.isInteractable(it) },
+            TileObjects.getAll {
+                it.name != null && it.name.contains(
+                    "bank",
+                    true
+                ) && bankLocation.area.contains(it) && Reachable.isInteractable(it) && it.hasAction("Use")
+            }
+        )
+        return entities.flatten().minByOrNull { it.distanceTo(Players.getLocal().worldLocation) }
+    }
+
     fun canOpenBank(): Boolean {
         return getBankEntity() != null
     }
 
-    fun openBank() {
+    fun openBank(bankLocation: BankLocation) {
         if (Movement.isWalking()) {
             return
         }
@@ -46,10 +60,12 @@ object MovementExt {
                     }
                 }
             } else {
-                val bankLocation: BankLocation? = BankLocation.values()
-                    .minByOrNull { it.area.distanceTo(Players.getLocal().worldLocation) }
                 Movement.walkTo(bankLocation)
             }
         }
+    }
+
+    fun openBank() {
+        openBank(BankLocation.getNearest())
     }
 }
