@@ -4,7 +4,7 @@ import dev.narcos.plugins.common.model.QuickPrayer
 import net.runelite.api.widgets.WidgetInfo
 import net.unethicalite.api.game.GameThread
 import net.unethicalite.api.game.Vars
-import net.unethicalite.api.packets.WidgetPackets
+import net.unethicalite.api.widgets.Prayers
 import net.unethicalite.api.widgets.Widgets
 import kotlin.math.pow
 
@@ -29,7 +29,9 @@ object PrayersExt {
     }
 
     fun toggleQuickPrayer() = GameThread.invoke {
-        WidgetPackets.queueWidgetAction1Packet(10485779, -1, -1)
+//        Prayers.toggleQuickPrayer(false)
+        Widgets.get(WidgetInfo.MINIMAP_QUICK_PRAYER_ORB)?.interact(0)
+//        WidgetPackets.queueWidgetAction1Packet(10485779, -1, -1)
     }
 
     fun flickQuickPrayers() {
@@ -37,24 +39,29 @@ object PrayersExt {
         toggleQuickPrayer()
     }
 
-    fun setupQuickPrayers(prayers: Set<QuickPrayer>) {
-        val prayersToToggle = GameThread.invokeLater {
-            QuickPrayer.values().filter {
-                prayers.contains(it) != isQuickPrayerEnabled(it)
-            }
+    fun setupQuickPrayers(prayers: Set<QuickPrayer>): Boolean {
+        val prayersToToggle = QuickPrayer.values().filter {
+            prayers.contains(it) != isQuickPrayerEnabled(it)
         }
+
         if (prayersToToggle.isNotEmpty()) {
             if (!isQuickPrayerSetupOpen()) {
                 openQuickPrayerSetup()
-                return
             }
-            prayersToToggle.forEach {
-                val widget = Widgets.get(WidgetInfo.QUICK_PRAYER_PRAYERS) ?: return
-                val child = widget.getChild(it.index) ?: return
-                child.interact("Toggle")
+            val skip = mutableSetOf<QuickPrayer>()
+            for (value in QuickPrayer.values()) {
+                if (isQuickPrayerEnabled(value) != prayers.contains(value) && !skip.contains(value)) {
+                    if (prayers.contains(value)) {
+                        skip.addAll(QuickPrayer.disablesMap[value]!!)
+                    }
+                    val widget = Widgets.get(WidgetInfo.QUICK_PRAYER_PRAYERS) ?: continue
+                    val child = widget.getChild(value.index) ?: continue
+                    child.interact("Toggle")
+                }
             }
-            closeQuickPrayerSetup()
+            return true
         }
+        return false
     }
 
     fun isQuickPrayerSetupOpen(): Boolean {

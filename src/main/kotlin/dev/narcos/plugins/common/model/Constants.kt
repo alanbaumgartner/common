@@ -3,7 +3,7 @@ package dev.narcos.plugins.common.model
 import net.runelite.api.ItemID
 
 object Constants {
-    val AMULET_OF_GLORY_IDS = listOf(
+    val AMULET_OF_GLORY_IDS = intArrayOf(
         ItemID.AMULET_OF_GLORY6,
         ItemID.AMULET_OF_GLORY5,
         ItemID.AMULET_OF_GLORY4,
@@ -12,7 +12,7 @@ object Constants {
         ItemID.AMULET_OF_GLORY1,
     )
 
-    val DUELING_RING_IDS = listOf(
+    val DUELING_RING_IDS = intArrayOf(
         ItemID.RING_OF_DUELING8,
         ItemID.RING_OF_DUELING7,
         ItemID.RING_OF_DUELING6,
@@ -23,7 +23,7 @@ object Constants {
         ItemID.RING_OF_DUELING1,
     )
 
-    val RING_OF_WEALTH_IDS = listOf(
+    val RING_OF_WEALTH_IDS = intArrayOf(
         ItemID.RING_OF_WEALTH_5,
         ItemID.RING_OF_WEALTH_4,
         ItemID.RING_OF_WEALTH_3,
@@ -31,7 +31,7 @@ object Constants {
         ItemID.RING_OF_WEALTH_1,
     )
 
-    val GAMES_NECKLACE_IDS = listOf(
+    val GAMES_NECKLACE_IDS = intArrayOf(
         ItemID.GAMES_NECKLACE8,
         ItemID.GAMES_NECKLACE7,
         ItemID.GAMES_NECKLACE6,
@@ -42,7 +42,7 @@ object Constants {
         ItemID.GAMES_NECKLACE1,
     )
 
-    val DIGSITE_PENDANT_IDS = listOf(
+    val DIGSITE_PENDANT_IDS = intArrayOf(
         ItemID.DIGSITE_PENDANT_5,
         ItemID.DIGSITE_PENDANT_4,
         ItemID.DIGSITE_PENDANT_3,
@@ -50,12 +50,27 @@ object Constants {
         ItemID.DIGSITE_PENDANT_1,
     )
 
-    val SKILLS_NECKLACE_IDS = listOf(
+    val SKILLS_NECKLACE_IDS = intArrayOf(
         ItemID.SKILLS_NECKLACE6,
         ItemID.SKILLS_NECKLACE5,
         ItemID.SKILLS_NECKLACE4,
         ItemID.SKILLS_NECKLACE3,
         ItemID.SKILLS_NECKLACE2,
         ItemID.SKILLS_NECKLACE1,
+    )
+
+    val STAMINA_IDS = intArrayOf(
+        ItemID.STAMINA_POTION4,
+        ItemID.STAMINA_POTION3,
+        ItemID.STAMINA_POTION2,
+        ItemID.STAMINA_POTION1,
+    )
+
+    val BURNING_AMULET_IDS = intArrayOf(
+        ItemID.BURNING_AMULET5,
+        ItemID.BURNING_AMULET4,
+        ItemID.BURNING_AMULET3,
+        ItemID.BURNING_AMULET2,
+        ItemID.BURNING_AMULET1,
     )
 }

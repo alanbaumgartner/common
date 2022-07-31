@@ -57,8 +57,14 @@ tasks {
     compileKotlin {
         kotlinOptions.jvmTarget = "11"
     }
+
+    register("buildRelease") {
+        group = "folks"
+        dependsOn(build)
+        finalizedBy(named("publishToMavenLocal"))
+    }
 }
 
 object Versions {
-    const val unethicaliteVersion = "1.0.6-SNAPSHOT"
+    const val unethicaliteVersion = "1.0.6"
 }
