@@ -73,4 +73,27 @@ object Constants {
         ItemID.BURNING_AMULET2,
         ItemID.BURNING_AMULET1,
     )
+
+    val RING_OF_RECOIL_IDS = intArrayOf(
+        ItemID.RING_OF_RECOIL,
+        ItemID.RING_OF_SUFFERING,
+        ItemID.RING_OF_SUFFERING_I,
+        ItemID.RING_OF_SUFFERING_I_25246,
+        ItemID.RING_OF_SUFFERING_I_26761,
+        ItemID.RING_OF_SUFFERING_R,
+        ItemID.RING_OF_SUFFERING_RI,
+        ItemID.RING_OF_SUFFERING_RI_26762,
+        ItemID.RING_OF_SUFFERING_RI_25248,
+    )
+
+    val ANTI_VENOM_IDS = intArrayOf(
+        ItemID.ANTIVENOM1,
+        ItemID.ANTIVENOM2,
+        ItemID.ANTIVENOM3,
+        ItemID.ANTIVENOM4,
+        ItemID.ANTIVENOM1_12919,
+        ItemID.ANTIVENOM2_12917,
+        ItemID.ANTIVENOM3_12915,
+        ItemID.ANTIVENOM4_12913,
+    )
 }
